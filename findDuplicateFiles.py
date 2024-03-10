@@ -1,6 +1,7 @@
-import os
 import hashlib
+import os
 from collections import defaultdict
+
 
 def get_file_hash(file_path):
     hasher = hashlib.sha256()
