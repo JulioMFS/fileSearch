@@ -56,7 +56,7 @@ if duplicates:
 else:
     print("No duplicate files found.")
 
-printTime('--> Analyzing ' + directory_to_search, start)
+printTime('--> Finding Duplicates ' + directory_to_search, start)
 sys.stdout = old_stdout
 
 log_file.close()
