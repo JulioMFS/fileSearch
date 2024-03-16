@@ -32,5 +32,5 @@ def cleanup_duplicate_files(root_folder, extensions):
 
 if __name__ == "__main__":
     root_folder = input("Enter the root folder path: ")
-    extensions = (".pdf", ".xlsx", ".jpg", ".csv", ".docx")  # Add more extensions as needed
+    extensions = (".pdf", ".xlsx", ".jpg", ".csv", ".docx", ".png")  # Add more extensions as needed
     cleanup_duplicate_files(root_folder, extensions)

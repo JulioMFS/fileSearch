@@ -1,5 +1,7 @@
 import hashlib
 import os
+import sys
+import timeit
 from collections import defaultdict
 
 
@@ -28,9 +30,22 @@ def find_duplicate_files(directory):
 
     return duplicate_files
 
-# Specify the directory to search for duplicate files
-directory_to_search = "D:"
+def printTime(msg, start):
+    end = timeit.default_timer()
+    hours, rem = divmod(end - start, 3600)
+    minutes, seconds = divmod(rem, 60)
+    print("{} ran for {:0>2}:{:0>2}:{:05.2f}".format(msg, int(hours), int(minutes), seconds))
 
+
+start = timeit.default_timer()
+old_stdout = sys.stdout
+
+log_file = open("message.log","w")
+
+sys.stdout = log_file
+# Specify the directory to search for duplicate files
+#directory_to_search = "D:"
+directory_to_search = '/media/julio/TOSHIBA EXT'
 # Find duplicate files
 duplicates = find_duplicate_files(directory_to_search)
 
@@ -40,3 +55,8 @@ if duplicates:
         print(duplicate)
 else:
     print("No duplicate files found.")
+
+printTime('--> Analyzing ' + directory_to_search, start)
+sys.stdout = old_stdout
+
+log_file.close()

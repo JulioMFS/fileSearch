@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-vailed_ext = ["JPG", ".jpg", "jpeg", ".png"]
-import os
-from PIL import Image
-f_list = []
-def Test2(rootDir):     
-    for lists in os.listdir(rootDir): 
-        path = os.path.join(rootDir, lists) 
-        filename, file_extension = os.path.splitext(path) 
-        if file_extension in vailed_ext:
-#            print(path)
-            f_list.append(path)
-        if os.path.isdir(path): 
-           Test2(path)
-=======
 import os
 import time
 vailed_ext = ["JPG", ".jpg", "jpeg", ".png"]
@@ -33,16 +18,12 @@ def Test2(rootDir):
         if os.path.isdir(path):
            Test2(path)
 st_time = time.time()
-Test2("/media/julio/TOSHIBA EXT")
->>>>>>> origin/master
+#Test2("/media/julio/TOSHIBA EXT")
 
-#Test2("/media/julio/writable")
+Test2("E:/")
 sorted_ext = sorted(ext.items(), key=lambda x:x[1], reverse=True)
 converted_dict = dict(sorted_ext)
 
-<<<<<<< HEAD
-
-=======
 #print(converted_dict)
 
 #for l in converted_dict:
@@ -57,5 +38,3 @@ secs = int((tot_time - min) / 60)
 print('\n<----------------------------------------------------------->')
 print('This progrtam took total {0}, {1}:{2} (mins:secs)'.format(tot_time, min, secs))
 print('<----------------------------------------------------------->')
->>>>>>> origin/master
-
