@@ -39,18 +39,21 @@ def printTime(msg, start):
 
 start = timeit.default_timer()
 old_stdout = sys.stdout
-
-log_file = open("message.log","w")
+progWithExtension = sys.argv[0]
+tempTuple = os.path.splitext(progWithExtension)
+prog = tempTuple[0]
+logfile = prog + '.log'
+log_file = open(logfile,"w")
 
 sys.stdout = log_file
 # Specify the directory to search for duplicate files
-#directory_to_search = "D:"
-directory_to_search = '/media/julio/TOSHIBA EXT'
+directory_to_search = "D:"
+#directory_to_search = '/media/julio/TOSHIBA EXT'
 # Find duplicate files
 duplicates = find_duplicate_files(directory_to_search)
 
 if duplicates:
-    print("Duplicate files found:")
+    print("Duplicate files found by prog: {0}, in {1}".format(sys.argv[0]), directory_to_search)
     for duplicate in duplicates:
         print(duplicate)
 else:
