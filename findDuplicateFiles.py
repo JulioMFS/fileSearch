@@ -51,7 +51,6 @@ directory_to_search = "D:"
 #directory_to_search = '/media/julio/TOSHIBA EXT'
 # Find duplicate files
 duplicates = find_duplicate_files(directory_to_search)
-
 if duplicates:
     print("Duplicate files found by prog: {0}, in {1}".format(sys.argv[0]), directory_to_search)
     for duplicate in duplicates:
