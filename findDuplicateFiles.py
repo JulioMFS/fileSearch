@@ -105,9 +105,9 @@ log_file = open(logfile,"w")
 #sys.stdout = log_file
 # Specify the directory to search for duplicate files
 sep = os.sep
-directory_to_search = "D:\\"
+#directory_to_search = "D:\\"
 #directory_to_search = "D:\AgromaisTest"
-#directory_to_search = '/media/julio/TOSHIBA EXT'
+directory_to_search = '/media/julio/TOSHIBA EXT'
 # Find duplicate files
 duplicates, extensions, totsz = find_duplicate_files(directory_to_search, log_file)
 if duplicates:
