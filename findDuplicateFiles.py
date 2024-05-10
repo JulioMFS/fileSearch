@@ -2,6 +2,7 @@ import hashlib
 import os
 import sys
 import timeit
+import stat
 from collections import defaultdict
 from datetime import datetime
 from colorist import Color
@@ -33,23 +34,25 @@ def find_duplicate_files(directory, log_file):
     for root, _, files in os.walk(directory):
         for filename in files:
             file_path = os.path.join(root, filename)
-            f, ext = os.path.splitext(file_path)
-            sz = os.path.getsize(file_path)
-            val = [0, 0]
-            if ext in extensions:
-                val = extensions[ext]
-                val[0] += 1
-                val[1] += sz
-                extensions[ext] = val
-            else:
-                val[0] = 1
-                val[1] = sz
-                extensions[ext] = val
-            totsz += sz
-            if 'eclipse' in file_path or 'Program Files' in file_path:
-                continue
-            file_hash = get_file_hash(file_path)
-            file_hash_map[file_hash].append(filename + ' ' + file_path)
+            info = os.stat(file_path)
+            if not info.st_file_attributes & (stat.FILE_ATTRIBUTE_SYSTEM | stat.FILE_ATTRIBUTE_HIDDEN):
+                f, ext = os.path.splitext(file_path)
+                sz = os.path.getsize(file_path)
+                val = [0, 0]
+                if ext in extensions:
+                    val = extensions[ext]
+                    val[0] += 1
+                    val[1] += sz
+                    extensions[ext] = val
+                else:
+                    val[0] = 1
+                    val[1] = sz
+                    extensions[ext] = val
+                totsz += sz
+                if 'eclipse' in file_path or 'Program Files' in file_path:
+                    continue
+                file_hash = get_file_hash(file_path)
+                file_hash_map[file_hash].append(filename + ' ' + file_path)
 
     duplicate_files = []
     print('No of files in file_hash: ', len(file_hash))
@@ -102,7 +105,7 @@ log_file = open(logfile,"w")
 #sys.stdout = log_file
 # Specify the directory to search for duplicate files
 sep = os.sep
-directory_to_search = "D:"
+directory_to_search = "D:\\"
 #directory_to_search = "D:\AgromaisTest"
 #directory_to_search = '/media/julio/TOSHIBA EXT'
 # Find duplicate files
